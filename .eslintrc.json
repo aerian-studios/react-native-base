@@ -1,0 +1,34 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "react-native"
+    ],
+    "extends": "eslint:recommended",
+    "rules": {
+        "no-console": "warn",
+        "no-case-declarations": "warn",
+        "no-const-assign": "warn",
+        "no-this-before-super": "warn",
+        "no-undef": "warn",
+        "no-unreachable": "warn",
+        "no-unused-vars": "warn",
+        "constructor-super": "warn",
+        "valid-typeof": "warn",
+        "react-native/no-unused-styles": "error",
+        "react-native/split-platform-components": "warn",
+        "react-native/no-inline-styles": "warn",
+        "react-native/no-color-literals": "warn"
+    }
+}

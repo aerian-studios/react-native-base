@@ -1,0 +1,110 @@
+{
+  "name": "reactNativeBase",
+  "version": "0.0.2",
+  "private": true,
+  "repository": {
+    "url": "git@bitbucket.org:aerian/react-native-base.git",
+    "type": "git"
+  },
+  "author": "sunya <sunya.dickman@aerian.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "lint": "eslint App/** -f stylish --quiet",
+    "lintdiff": "git diff --name-only --cached --relative | grep '\\.js$' | xargs eslint App/** -f stylish --quiet",
+    "clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm cache clean",
+    "newclear": "rm -rf $TMPDIR/react-* && watchman watch-del-all && rm -rf ios/build/ModuleCache/* && rm -rf node_modules/ && npm cache clean && npm i",
+    "test": "NODE_ENV=production ava",
+    "test:watch": "ava --watch -v",
+    "coverage": "nyc ava && nyc report --reporter=html && open coverage/index.html || xdg-open coverage/index.html",
+    "tron": "node_modules/.bin/reactotron",
+    "android:build": "cd android && ./gradlew assembleRelease",
+    "android:install": "cd android && ./gradlew assembleRelease && ./gradlew installRelease",
+    "android:hockeyapp": "cd android && ./gradlew assembleRelease && puck -submit=auto app/build/outputs/apk/app-release.apk",
+    "android:devices": "$ANDROID_HOME/platform-tools/adb devices",
+    "android:logcat": "$ANDROID_HOME/platform-tools/adb logcat *:S ReactNative:V ReactNativeJS:V",
+    "android:shake": "$ANDROID_HOME/platform-tools/adb devices | grep '\\t' | awk '{print $1}' | sed 's/\\s//g' | xargs -I {} $ANDROID_HOME/platform-tools/adb -s {} shell input keyevent 82",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "precommit": "if [ -d 'react-native-base' ]; then cd react-native-base; fi; npm run test; npm run lint"
+  },
+  "dependencies": {
+    "apisauce": "^0.7.0",
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.11.1",
+    "eslint-plugin-react": "^6.8.0",
+    "eslint-plugin-react-native": "^2.2.0",
+    "format-json": "^1.0.3",
+    "nyc": "^10.0.0",
+    "querystringify": "0.0.4",
+    "react": "^15.4.1",
+    "react-addons-test-utils": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-native": "0.41.2",
+    "react-native-animatable": "^1.1.0",
+    "react-native-device-info": "^0.9.7",
+    "react-native-drawer": "^2.3.0",
+    "react-native-git-upgrade": "^0.2.6",
+    "react-native-i18n": "^0.1.1",
+    "react-native-mock": "^0.2.9",
+    "react-native-modal-datetime-picker": "^3.0.0",
+    "react-native-router-flux": "^3.35.0",
+    "react-native-vector-icons": "^4.0.0",
+    "react-native-video": "^1.0.0",
+    "react-redux": "^4.4.2",
+    "reactotron-apisauce": "^1.6.0",
+    "reactotron-react-native": "^1.6.0",
+    "reactotron-redux": "^1.6.0",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.7.4",
+    "redux-persist": "^4.0.0-beta1",
+    "redux-saga": "^0.13.0",
+    "seamless-immutable": "^6.1.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "devDependencies": {
+    "ava": "^0.17.0",
+    "babel-eslint": "^7.1.1",
+    "babel-preset-es2015": "^6.18.0",
+    "enzyme": "^2.6.0",
+    "eslint": "^3.11.1",
+    "eslint-plugin-react": "^6.8.0",
+    "eslint-plugin-react-native": "^2.2.0",
+    "flow-bin": "^0.36.0",
+    "husky": "git://github.com/aerian-studios/husky.git",
+    "mockery": "^2.0.0",
+    "nyc": "^10.0.0",
+    "react-addons-test-utils": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-native-mock": "^0.2.9",
+    "reactotron-apisauce": "^1.6.0",
+    "reactotron-react-native": "^1.6.0",
+    "reactotron-redux": "^1.6.0"
+  },
+  "ava": {
+    "files": [
+      "Tests/**/*.js",
+      "!Tests/Setup.js"
+    ],
+    "require": [
+      "babel-register",
+      "babel-polyfill",
+      "react-native-mock/mock",
+      "./Tests/Setup"
+    ],
+    "babel": "inherit"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": [
+      "describe",
+      "it",
+      "fetch",
+      "navigator",
+      "__DEV__",
+      "XMLHttpRequest",
+      "FormData"
+    ]
+  }
+}

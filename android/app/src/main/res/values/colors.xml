@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="aerianpink" type="color">#CF254D</item>
+
+    <integer-array name="androidcolors">
+        <item>@color/aerianpink</item>
+    </integer-array>
+
+</resources>

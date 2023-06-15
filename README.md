@@ -1,4 +1,10 @@
 #  ReactNativeBase
+
+## Deprecated!
+
+Please consider using one of the more recent React Native templates
+
+
 React Native App project setup heavily inspired by the marvellous example set at [Ignite](https://github.com/infinitered/ignite), but with much more documentation.
 
 ## About this project
